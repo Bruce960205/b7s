@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/allora-network/b7s/models/blockless"
+	"github.com/Bruce960205/b7s/models/blockless"
 )
 
 type functionRecord struct {

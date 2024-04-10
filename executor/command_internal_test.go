@@ -10,9 +10,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/allora-network/b7s/models/blockless"
-	"github.com/allora-network/b7s/models/execute"
-	"github.com/allora-network/b7s/testing/mocks"
+	"github.com/Bruce960205/b7s/models/blockless"
+	"github.com/Bruce960205/b7s/models/execute"
+	"github.com/Bruce960205/b7s/testing/mocks"
 )
 
 func TestExecute_CreateCMD(t *testing.T) {

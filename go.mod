@@ -1,4 +1,4 @@
-module github.com/allora-network/b7s
+module github.com/Bruce960205/b7s
 
 go 1.21.0
 

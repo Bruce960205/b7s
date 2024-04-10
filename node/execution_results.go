@@ -7,8 +7,8 @@ import (
 	"github.com/libp2p/go-libp2p/core/peer"
 	"github.com/rs/zerolog/log"
 
-	"github.com/allora-network/b7s/models/execute"
-	"github.com/allora-network/b7s/models/response"
+	"github.com/Bruce960205/b7s/models/execute"
+	"github.com/Bruce960205/b7s/models/response"
 )
 
 // gatherExecutionResultsPBFT collects execution results from a PBFT cluster. This means f+1 identical results.

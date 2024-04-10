@@ -15,9 +15,9 @@ import (
 	"github.com/libp2p/go-libp2p/core/peer"
 	"github.com/libp2p/go-libp2p/core/protocol"
 
-	"github.com/allora-network/b7s/consensus"
-	"github.com/allora-network/b7s/host"
-	"github.com/allora-network/b7s/models/blockless"
+	"github.com/Bruce960205/b7s/consensus"
+	"github.com/Bruce960205/b7s/host"
+	"github.com/Bruce960205/b7s/models/blockless"
 )
 
 // TODO (pbft): Request timestamp - execution exactly once, prevent multiple/out of order executions.

@@ -6,9 +6,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/allora-network/b7s/store"
-	"github.com/allora-network/b7s/testing/helpers"
-	"github.com/allora-network/b7s/testing/mocks"
+	"github.com/Bruce960205/b7s/store"
+	"github.com/Bruce960205/b7s/testing/helpers"
+	"github.com/Bruce960205/b7s/testing/mocks"
 )
 
 func TestFunction_UnpackArchive(t *testing.T) {

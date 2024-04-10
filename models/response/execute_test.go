@@ -6,10 +6,10 @@ import (
 	"github.com/libp2p/go-libp2p/core/crypto"
 	"github.com/stretchr/testify/require"
 
-	"github.com/allora-network/b7s/models/blockless"
-	"github.com/allora-network/b7s/models/codes"
-	"github.com/allora-network/b7s/models/execute"
-	"github.com/allora-network/b7s/testing/mocks"
+	"github.com/Bruce960205/b7s/models/blockless"
+	"github.com/Bruce960205/b7s/models/codes"
+	"github.com/Bruce960205/b7s/models/execute"
+	"github.com/Bruce960205/b7s/testing/mocks"
 )
 
 func TestExecute_Signing(t *testing.T) {

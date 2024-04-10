@@ -3,9 +3,9 @@ package main
 import (
 	"github.com/spf13/pflag"
 
-	"github.com/allora-network/b7s/config"
-	"github.com/allora-network/b7s/models/blockless"
-	"github.com/allora-network/b7s/node"
+	"github.com/Bruce960205/b7s/config"
+	"github.com/Bruce960205/b7s/models/blockless"
+	"github.com/Bruce960205/b7s/node"
 )
 
 // Default values.

@@ -1,8 +1,8 @@
 package node
 
 import (
-	"github.com/allora-network/b7s/models/codes"
-	"github.com/allora-network/b7s/models/execute"
+	"github.com/Bruce960205/b7s/models/codes"
+	"github.com/Bruce960205/b7s/models/execute"
 )
 
 type ChanData struct {

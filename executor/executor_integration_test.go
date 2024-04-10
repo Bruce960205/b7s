@@ -15,10 +15,10 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/allora-network/b7s/executor"
-	"github.com/allora-network/b7s/models/codes"
-	"github.com/allora-network/b7s/models/execute"
-	"github.com/allora-network/b7s/testing/mocks"
+	"github.com/Bruce960205/b7s/executor"
+	"github.com/Bruce960205/b7s/models/codes"
+	"github.com/Bruce960205/b7s/models/execute"
+	"github.com/Bruce960205/b7s/testing/mocks"
 )
 
 const (

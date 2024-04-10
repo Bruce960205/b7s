@@ -7,10 +7,10 @@ import (
 
 	"github.com/labstack/echo/v4"
 
-	"github.com/allora-network/b7s/models/blockless"
-	"github.com/allora-network/b7s/models/codes"
-	"github.com/allora-network/b7s/models/execute"
-	"github.com/allora-network/b7s/node/aggregate"
+	"github.com/Bruce960205/b7s/models/blockless"
+	"github.com/Bruce960205/b7s/models/codes"
+	"github.com/Bruce960205/b7s/models/execute"
+	"github.com/Bruce960205/b7s/node/aggregate"
 )
 
 // ExecuteRequest describes the payload for the REST API request for function execution.

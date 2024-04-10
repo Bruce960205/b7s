@@ -5,8 +5,8 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/allora-network/b7s/consensus"
-	"github.com/allora-network/b7s/models/blockless"
+	"github.com/Bruce960205/b7s/consensus"
+	"github.com/Bruce960205/b7s/models/blockless"
 )
 
 // Option can be used to set Node configuration options.

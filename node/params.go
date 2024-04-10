@@ -4,7 +4,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/allora-network/b7s/consensus"
+	"github.com/Bruce960205/b7s/consensus"
 )
 
 const (

@@ -7,10 +7,10 @@ import (
 
 	"github.com/libp2p/go-libp2p/core/peer"
 
-	"github.com/allora-network/b7s/models/blockless"
-	"github.com/allora-network/b7s/models/codes"
-	"github.com/allora-network/b7s/models/request"
-	"github.com/allora-network/b7s/models/response"
+	"github.com/Bruce960205/b7s/models/blockless"
+	"github.com/Bruce960205/b7s/models/codes"
+	"github.com/Bruce960205/b7s/models/request"
+	"github.com/Bruce960205/b7s/models/response"
 )
 
 func (n *Node) processInstallFunction(ctx context.Context, from peer.ID, payload []byte) error {

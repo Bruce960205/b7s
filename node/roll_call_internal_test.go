@@ -10,13 +10,13 @@ import (
 	"github.com/libp2p/go-libp2p/core/network"
 	"github.com/stretchr/testify/require"
 
-	"github.com/allora-network/b7s/consensus"
-	"github.com/allora-network/b7s/host"
-	"github.com/allora-network/b7s/models/blockless"
-	"github.com/allora-network/b7s/models/codes"
-	"github.com/allora-network/b7s/models/request"
-	"github.com/allora-network/b7s/models/response"
-	"github.com/allora-network/b7s/testing/mocks"
+	"github.com/Bruce960205/b7s/consensus"
+	"github.com/Bruce960205/b7s/host"
+	"github.com/Bruce960205/b7s/models/blockless"
+	"github.com/Bruce960205/b7s/models/codes"
+	"github.com/Bruce960205/b7s/models/request"
+	"github.com/Bruce960205/b7s/models/response"
+	"github.com/Bruce960205/b7s/testing/mocks"
 )
 
 func TestNode_RollCall(t *testing.T) {

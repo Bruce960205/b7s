@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/allora-network/b7s/models/blockless"
+	"github.com/Bruce960205/b7s/models/blockless"
 )
 
 func TestFunction_UpdateDeploymentInfo(t *testing.T) {

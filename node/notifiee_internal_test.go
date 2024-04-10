@@ -8,9 +8,9 @@ import (
 	"github.com/multiformats/go-multiaddr"
 	"github.com/stretchr/testify/require"
 
-	"github.com/allora-network/b7s/host"
-	"github.com/allora-network/b7s/models/blockless"
-	"github.com/allora-network/b7s/testing/mocks"
+	"github.com/Bruce960205/b7s/host"
+	"github.com/Bruce960205/b7s/models/blockless"
+	"github.com/Bruce960205/b7s/testing/mocks"
 )
 
 func TestNode_Notifiee(t *testing.T) {

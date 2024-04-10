@@ -3,7 +3,7 @@ package pbft
 import (
 	"sync"
 
-	"github.com/allora-network/b7s/models/response"
+	"github.com/Bruce960205/b7s/models/response"
 )
 
 type replicaState struct {

@@ -9,8 +9,8 @@ import (
 	"os/exec"
 	"time"
 
-	"github.com/allora-network/b7s/executor/internal/process"
-	"github.com/allora-network/b7s/models/execute"
+	"github.com/Bruce960205/b7s/executor/internal/process"
+	"github.com/Bruce960205/b7s/models/execute"
 )
 
 // executeCommand on non-windows systems is pretty straightforward and equivalent to the ordinary `cmd.Run()` or `cmd.Output`.

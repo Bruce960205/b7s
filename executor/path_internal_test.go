@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/allora-network/b7s/testing/mocks"
+	"github.com/Bruce960205/b7s/testing/mocks"
 )
 
 func TestExecutor_RequestPaths(t *testing.T) {

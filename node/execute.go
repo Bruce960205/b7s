@@ -8,10 +8,10 @@ import (
 
 	"github.com/libp2p/go-libp2p/core/peer"
 
-	"github.com/allora-network/b7s/consensus"
-	"github.com/allora-network/b7s/models/codes"
-	"github.com/allora-network/b7s/models/execute"
-	"github.com/allora-network/b7s/models/response"
+	"github.com/Bruce960205/b7s/consensus"
+	"github.com/Bruce960205/b7s/models/codes"
+	"github.com/Bruce960205/b7s/models/execute"
+	"github.com/Bruce960205/b7s/models/response"
 )
 
 func (n *Node) processExecute(ctx context.Context, from peer.ID, payload []byte) error {

@@ -3,7 +3,7 @@ package mocks
 import (
 	"testing"
 
-	"github.com/allora-network/b7s/models/blockless"
+	"github.com/Bruce960205/b7s/models/blockless"
 )
 
 type FStore struct {

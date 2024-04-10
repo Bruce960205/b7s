@@ -8,9 +8,9 @@ import (
 	"github.com/spf13/afero"
 	"github.com/stretchr/testify/require"
 
-	"github.com/allora-network/b7s/executor"
-	"github.com/allora-network/b7s/models/blockless"
-	"github.com/allora-network/b7s/testing/mocks"
+	"github.com/Bruce960205/b7s/executor"
+	"github.com/Bruce960205/b7s/models/blockless"
+	"github.com/Bruce960205/b7s/testing/mocks"
 )
 
 func TestExecutor_Create(t *testing.T) {

@@ -11,8 +11,8 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/require"
 
-	"github.com/allora-network/b7s/api"
-	"github.com/allora-network/b7s/testing/mocks"
+	"github.com/Bruce960205/b7s/api"
+	"github.com/Bruce960205/b7s/testing/mocks"
 )
 
 func TestAPI_FunctionInstall(t *testing.T) {

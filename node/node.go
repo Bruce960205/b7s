@@ -3,7 +3,7 @@ package node
 import (
 	"context"
 	"fmt"
-	"github.com/allora-network/b7s/models/response"
+	"github.com/Bruce960205/b7s/models/response"
 	"slices"
 	"sync"
 
@@ -11,9 +11,9 @@ import (
 	"github.com/libp2p/go-libp2p/core/peer"
 	"github.com/rs/zerolog"
 
-	"github.com/allora-network/b7s/host"
-	"github.com/allora-network/b7s/models/blockless"
-	"github.com/allora-network/b7s/node/internal/waitmap"
+	"github.com/Bruce960205/b7s/host"
+	"github.com/Bruce960205/b7s/models/blockless"
+	"github.com/Bruce960205/b7s/node/internal/waitmap"
 	"github.com/blocklessnetwork/b7s-attributes/attributes"
 )
 

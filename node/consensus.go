@@ -104,13 +104,9 @@ func (n *Node) createPBFTCluster(ctx context.Context, from peer.ID, fc request.F
 		return fmt.Errorf("could not create PBFT node: %w", err)
 	}
 
-	n.log.Debug().Str("fc.RequestID", fc.RequestID).Msg("createPBFTCluster Debug0")
 	n.clusterLock.Lock()
-	n.log.Debug().Msg("createPBFTCluster Debug1")
 	n.clusters[fc.RequestID] = ph
-	n.log.Debug().Msg("createPBFTCluster Debug2")
 	n.clusterLock.Unlock()
-	n.log.Debug().Msg("createPBFTCluster Debug3")
 
 	res := response.FormCluster{
 		Type:      blockless.MessageFormClusterResponse,
@@ -118,7 +114,6 @@ func (n *Node) createPBFTCluster(ctx context.Context, from peer.ID, fc request.F
 		Code:      codes.OK,
 		Consensus: fc.Consensus,
 	}
-	n.log.Debug().Msg("createPBFTCluster Debug4")
 
 	err = n.send(ctx, from, res)
 	if err != nil {

@@ -47,10 +47,11 @@ type Node struct {
 	executeResponses   *waitmap.WaitMap
 	consensusResponses *waitmap.WaitMap
 
-	pbftExecuteResponse map[string]response.Execute
-	reportingPeers      map[string][]peer.ID
-	comChannel          chan []byte
-	topics              map[string]string
+	pbftExecuteResponse     map[string]response.Execute
+	reportingPeers          map[string][]peer.ID
+	comChannel              chan []byte
+	topics                  map[string]string
+	pbftExecuteResponseLock sync.RWMutex
 }
 
 // New creates a new Node.

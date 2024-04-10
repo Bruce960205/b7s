@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/Bruce960205/b7s/consensus/pbft"
 	"time"
 
 	"github.com/libp2p/go-libp2p/core/peer"
@@ -102,6 +103,10 @@ func (n *Node) headExecute(ctx context.Context, requestID string, req execute.Re
 
 	cluster := execute.Cluster{
 		Peers: reportingPeers,
+	}
+
+	if len(reportingPeers) < pbft.MinimumReplicaCount {
+		consensusAlgo = n.cfg.DefaultConsensus
 	}
 
 	log.Log().Strs("reportingPeers", blockless.PeerIDsToStr(reportingPeers)).Msg("Result of reportingPeers")

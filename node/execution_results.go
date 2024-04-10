@@ -21,8 +21,8 @@ func (n *Node) gatherExecutionResultsPBFT(requestID string, peers []peer.ID) exe
 
 	var (
 		//count = pbft.MinClusterResults(uint(len(peers)))
-		//lock  sync.Mutex
-		wg sync.WaitGroup
+		lock sync.Mutex
+		wg   sync.WaitGroup
 
 		//results                   = make(map[string]aggregatedResult)
 		out execute.ResultMap = make(map[peer.ID]execute.Result)
@@ -61,9 +61,9 @@ func (n *Node) gatherExecutionResultsPBFT(requestID string, peers []peer.ID) exe
 				return
 			}
 
+			lock.Lock()
 			out[sender] = exres
-			//lock.Lock()
-			//defer lock.Unlock()
+			defer lock.Unlock()
 			//
 			//// Equality means same result and same timestamp.
 			//reskey := fmt.Sprintf("%+#v-%s", exres.Result, res.PBFT.RequestTimestamp.String())

@@ -118,6 +118,7 @@ func (n *Node) createPBFTCluster(ctx context.Context, from peer.ID, fc request.F
 		Code:      codes.OK,
 		Consensus: fc.Consensus,
 	}
+	n.log.Debug().Msg("createPBFTCluster Debug4")
 
 	err = n.send(ctx, from, res)
 	if err != nil {

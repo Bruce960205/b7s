@@ -71,10 +71,18 @@ func (n *Node) processExecuteResponseToPrimary(ctx context.Context, from peer.ID
 			fmt.Errorf("could not pack execute response for sending application layer: %w", err)
 		}
 		n.comChannel <- payload
-		n.disbandCluster(res.RequestID, n.reportingPeers[res.RequestID])
+		_ = n.disbandCluster(res.RequestID, n.reportingPeers[res.RequestID])
 	}
 
 	return nil
+}
+
+func (n *Node) listenClisterChannel(ctx context.Context) {
+	select {
+	case msg := <-n.clusterChannel:
+		n.log.Debug().Msg("Received PBFT frm itself")
+		_ = n.processExecuteResponseToPrimary(nil, n.host.ID(), msg)
+	}
 }
 
 func executionResultKey(requestID string, peer peer.ID) string {

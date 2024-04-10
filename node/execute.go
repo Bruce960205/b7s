@@ -49,9 +49,9 @@ func (n *Node) processExecuteResponseToPrimary(ctx context.Context, from peer.ID
 		return fmt.Errorf("could not unpack execute response: %w", err)
 	}
 	res.From = from
-	n.clusterLock.Lock()
+	//n.clusterLock.Lock()
 	key := executionResultKey(res.RequestID, from)
-	defer n.clusterLock.Unlock()
+	//defer n.clusterLock.Unlock()
 	n.pbftExecuteResponse[key] = res
 	if len(n.reportingPeers[res.RequestID]) > 0 && len(n.pbftExecuteResponse) >= len(n.reportingPeers[res.RequestID])-1 {
 		out := n.gatherExecutionResultsPBFT(res.RequestID, n.reportingPeers[res.RequestID])

@@ -94,7 +94,7 @@ func New(log zerolog.Logger, host *host.Host, peerStore PeerStore, fstore FStore
 		reportingPeers:      make(map[string][]peer.ID),
 		comChannel:          make(chan []byte, 1),
 		topics:              make(map[string]string),
-		clusterChannel:      make(chan []byte, 1),
+		clusterChannel:      make(chan []byte, 10),
 	}
 
 	if cfg.LoadAttributes {

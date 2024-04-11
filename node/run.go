@@ -141,7 +141,7 @@ func (n *Node) listenClusterChannel(ctx context.Context) {
 	for {
 		_, err := sub.ReceiveMessage(ctx)
 		if err == nil {
-			n.log.Debug().Msg("Received PBFT from itself")
+			n.log.Debug().Msg("Received PBFT from itself...")
 			//_ = n.processExecuteResponseToPrimary(nil, n.host.ID(), msg)
 		}
 	}

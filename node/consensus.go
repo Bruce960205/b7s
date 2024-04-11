@@ -94,7 +94,7 @@ func (n *Node) createPBFTCluster(ctx context.Context, from peer.ID, fc request.F
 
 	ph, err := pbft.NewReplica(
 		n.log,
-		ctx,
+		n.ctx,
 		n.host,
 		n.executor,
 		fc.Peers,

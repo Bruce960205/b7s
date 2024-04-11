@@ -49,7 +49,7 @@ func (n *Node) Run(ctx context.Context) error {
 	// Start the function sync in the background to periodically check functions.
 	go n.runSyncLoop(ctx)
 
-	go n.listenClisterChannel(ctx)
+	go n.listenClusterChannel(ctx)
 
 	n.log.Info().Uint("concurrency", n.cfg.Concurrency).Msg("starting node main loop")
 
@@ -133,4 +133,14 @@ func (n *Node) listenDirectMessages(ctx context.Context) {
 			n.log.Error().Err(err).Str("peer", from.String()).Msg("could not process direct message")
 		}
 	})
+}
+
+func (n *Node) listenClusterChannel(ctx context.Context) {
+	sub := n.rdb.Subscribe(ctx, DefaultRedisChannel)
+	defer sub.Close()
+	for {
+		msg, _ := sub.ReceiveMessage(ctx)
+		n.log.Debug().Str("Receive from itself", msg.Payload).Msg("Received PBFT frm itself")
+		//_ = n.processExecuteResponseToPrimary(nil, n.host.ID(), msg)
+	}
 }

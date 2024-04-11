@@ -14,6 +14,8 @@ const (
 	DefaultExecutionTimeout        = 20 * time.Second
 	DefaultClusterFormationTimeout = 10 * time.Second
 	DefaultConcurrency             = 10
+	DefaultLocalRedis              = "localhost:6379"
+	DefaultRedisChannel            = "cluster-primary"
 
 	DefaultConsensusAlgorithm = consensus.Raft
 

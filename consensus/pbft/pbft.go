@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"errors"
 	"fmt"
+	"github.com/go-redis/redis/v8"
 	"io"
 	"os"
 	"strings"
@@ -44,13 +45,13 @@ type Replica struct {
 	clusterID  string
 	protocolID protocol.ID
 
-	nodeChannel chan []byte
+	rdb *redis.Client
 	// TODO (pbft): This is used for testing ATM, remove later.
 	byzantine bool
 }
 
 // NewReplica creates a new PBFT replica.
-func NewReplica(log zerolog.Logger, host *host.Host, executor blockless.Executor, peers []peer.ID, ch chan []byte, clusterID string, options ...Option) (*Replica, error) {
+func NewReplica(log zerolog.Logger, host *host.Host, executor blockless.Executor, peers []peer.ID, rd *redis.Client, clusterID string, options ...Option) (*Replica, error) {
 
 	total := uint(len(peers))
 
@@ -78,8 +79,8 @@ func NewReplica(log zerolog.Logger, host *host.Host, executor blockless.Executor
 		id:    host.ID(),
 		peers: peers,
 
-		nodeChannel: ch,
-		byzantine:   isByzantine(),
+		rdb:       rd,
+		byzantine: isByzantine(),
 	}
 
 	replica.log.Info().Strs("replicas", peerIDList(peers)).Uint("n", total).Uint("f", replica.f).Bool("byzantine", replica.byzantine).Msg("created PBFT replica")

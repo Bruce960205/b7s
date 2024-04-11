@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/Bruce960205/b7s/models/response"
+	"github.com/go-redis/redis/v8"
 	"slices"
 	"sync"
 
@@ -47,12 +48,13 @@ type Node struct {
 	executeResponses   *waitmap.WaitMap
 	consensusResponses *waitmap.WaitMap
 
-	pbftExecuteResponse     map[string]response.Execute
+	pbftExecuteResponse     map[string]map[string]response.Execute
 	reportingPeers          map[string][]peer.ID
 	comChannel              chan []byte
 	topics                  map[string]string
 	pbftExecuteResponseLock sync.RWMutex
 	clusterChannel          chan []byte
+	rdb                     *redis.Client
 }
 
 // New creates a new Node.
@@ -75,6 +77,12 @@ func New(log zerolog.Logger, host *host.Host, peerStore PeerStore, fstore FStore
 		topics:  make(map[string]*topicInfo),
 	}
 
+	redi := redis.NewClient(&redis.Options{
+		Addr:     DefaultLocalRedis,
+		Password: "",
+		DB:       0,
+	})
+
 	n := &Node{
 		cfg:      cfg,
 		log:      log.With().Str("component", "node").Logger(),
@@ -90,11 +98,12 @@ func New(log zerolog.Logger, host *host.Host, peerStore PeerStore, fstore FStore
 		clusters:            make(map[string]consensusExecutor),
 		executeResponses:    waitmap.New(),
 		consensusResponses:  waitmap.New(),
-		pbftExecuteResponse: make(map[string]response.Execute),
+		pbftExecuteResponse: make(map[string]map[string]response.Execute),
 		reportingPeers:      make(map[string][]peer.ID),
 		comChannel:          make(chan []byte, 1),
 		topics:              make(map[string]string),
-		clusterChannel:      make(chan []byte, 10),
+		clusterChannel:      make(chan []byte, 1),
+		rdb:                 redi,
 	}
 
 	if cfg.LoadAttributes {

@@ -51,9 +51,9 @@ func (n *Node) processExecuteResponseToPrimary(ctx context.Context, from peer.ID
 	res.From = from
 	key := executionResultKey(res.RequestID, from)
 	n.pbftExecuteResponseLock.Lock()
-	n.pbftExecuteResponse[key] = res
+	n.pbftExecuteResponse[res.RequestID][key] = res
 	n.pbftExecuteResponseLock.Unlock()
-	if len(n.reportingPeers[res.RequestID]) > 0 && len(n.pbftExecuteResponse) >= len(n.reportingPeers[res.RequestID]) {
+	if len(n.reportingPeers[res.RequestID]) > 0 && len(n.pbftExecuteResponse[res.RequestID]) >= len(n.reportingPeers[res.RequestID]) {
 		n.log.Debug().Int("len response", len(n.pbftExecuteResponse)).Msg("processExecuteResponseToPrimary debug")
 		out := n.gatherExecutionResultsPBFT(res.RequestID, n.reportingPeers[res.RequestID])
 		result := codes.OK
@@ -72,7 +72,7 @@ func (n *Node) processExecuteResponseToPrimary(ctx context.Context, from peer.ID
 			fmt.Errorf("could not pack execute response for sending application layer: %w", err)
 		}
 		n.comChannel <- payload
-		n.pbftExecuteResponse = make(map[string]response.Execute)
+		n.pbftExecuteResponse[res.RequestID] = make(map[string]response.Execute)
 		_ = n.disbandCluster(res.RequestID, n.reportingPeers[res.RequestID])
 	}
 

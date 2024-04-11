@@ -97,7 +97,7 @@ func (n *Node) createPBFTCluster(ctx context.Context, from peer.ID, fc request.F
 		n.host,
 		n.executor,
 		fc.Peers,
-		n.clusterChannel,
+		n.rdb,
 		fc.RequestID,
 		pbft.WithPostProcessors(cacheFn),
 	)

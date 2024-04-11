@@ -1,6 +1,7 @@
 package pbft
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -127,7 +128,8 @@ func (r *Replica) execute(view uint, sequence uint, digest string) error {
 		log.Debug().Msg("Replica execute debug10")
 		payload, err := json.Marshal(msg)
 		if err == nil {
-			r.nodeChannel <- payload
+			r.rdb.Publish(context.Background(), "cluster-primary", payload)
+			//r.nodeChannel <- payload
 			log.Info().Msg("nodeChannel sent")
 		}
 		return nil

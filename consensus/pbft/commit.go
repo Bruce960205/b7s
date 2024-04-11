@@ -95,24 +95,29 @@ func (r *Replica) processCommit(replica peer.ID, commit Commit) error {
 		return fmt.Errorf("commit has an invalid view value (received: %v, current: %v)", commit.View, r.view)
 	}
 
+	log.Info().Msg("processCommit debug0")
 	err := r.verifySignature(&commit, replica)
 	if err != nil {
 		return fmt.Errorf("could not validate commit signature: %w", err)
 	}
 
+	log.Info().Msg("processCommit debug1")
 	r.recordCommitReceipt(replica, commit)
 
+	log.Info().Msg("processCommit debug2")
 	if !r.committed(commit.View, commit.SequenceNumber, commit.Digest) {
 		log.Info().Msg("request is not yet committed")
 		return nil
 	}
 
+	log.Info().Msg("processCommit debug3")
 	err = r.execute(commit.View, commit.SequenceNumber, commit.Digest)
 	if err != nil {
 		return fmt.Errorf("request execution failed: %w", err)
 
 	}
 
+	log.Info().Msg("processCommit debug4")
 	return nil
 }
 

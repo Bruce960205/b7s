@@ -139,8 +139,10 @@ func (n *Node) listenClusterChannel(ctx context.Context) {
 	sub := n.rdb.Subscribe(ctx, DefaultRedisChannel)
 	defer sub.Close()
 	for {
-		msg, _ := sub.ReceiveMessage(ctx)
-		n.log.Debug().Str("Receive from itself", msg.Payload).Msg("Received PBFT frm itself")
-		//_ = n.processExecuteResponseToPrimary(nil, n.host.ID(), msg)
+		_, err := sub.ReceiveMessage(ctx)
+		if err == nil {
+			n.log.Debug().Msg("Received PBFT from itself")
+			//_ = n.processExecuteResponseToPrimary(nil, n.host.ID(), msg)
+		}
 	}
 }

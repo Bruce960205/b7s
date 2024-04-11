@@ -2,6 +2,7 @@ package pbft
 
 import (
 	"bufio"
+	"context"
 	"errors"
 	"fmt"
 	"github.com/go-redis/redis/v8"
@@ -30,7 +31,7 @@ type Replica struct {
 	replicaState
 
 	cfg Config
-
+	ctx context.Context
 	// Track inactivity period to trigger a view change.
 	requestTimer *time.Timer
 
@@ -51,7 +52,7 @@ type Replica struct {
 }
 
 // NewReplica creates a new PBFT replica.
-func NewReplica(log zerolog.Logger, host *host.Host, executor blockless.Executor, peers []peer.ID, rd *redis.Client, clusterID string, options ...Option) (*Replica, error) {
+func NewReplica(log zerolog.Logger, ctx context.Context, host *host.Host, executor blockless.Executor, peers []peer.ID, rd *redis.Client, clusterID string, options ...Option) (*Replica, error) {
 
 	total := uint(len(peers))
 
@@ -69,6 +70,7 @@ func NewReplica(log zerolog.Logger, host *host.Host, executor blockless.Executor
 		replicaState: newState(),
 
 		cfg: cfg,
+		ctx: ctx,
 
 		log:        log.With().Str("component", "pbft").Str("cluster", clusterID).Logger(),
 		host:       host,

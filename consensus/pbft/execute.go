@@ -47,6 +47,7 @@ func (r *Replica) execute(view uint, sequence uint, digest string) error {
 
 	log := r.log.With().Uint("view", view).Uint("sequence", sequence).Str("digest", digest).Str("request", request.ID).Logger()
 
+	log.Debug().Msg("Replica execute debug1")
 	// We don't want to execute a job multiple times.
 	_, havePending := r.pending[digest]
 	if !havePending {
@@ -54,36 +55,42 @@ func (r *Replica) execute(view uint, sequence uint, digest string) error {
 		return nil
 	}
 
+	log.Debug().Msg("Replica execute debug2")
 	// Requests must be executed in order.
 	if sequence != r.lastExecuted+1 {
 		log.Error().Msg("requests with lower sequence number have not been executed")
 		// TODO (pbft): Start execution of earlier requests?
 		return nil
 	}
-
+	log.Debug().Msg("Replica execute debug3")
 	// Sanity check - should never happen.
 	if sequence < r.lastExecuted {
 		log.Error().Uint("last_executed", r.lastExecuted).Msg("requests executed out of order!")
 	}
 
+	log.Debug().Msg("Replica execute debug4")
 	// Remove this request from the list of outstanding requests.
 	delete(r.pending, digest)
 
 	log.Info().Msg("executing request")
 
 	res, err := r.executor.ExecuteFunction(request.ID, request.Execute)
+	log.Debug().Msg("Replica execute debug5")
 	if err != nil {
 		log.Error().Err(err).Msg("execution failed")
 	}
 
+	log.Debug().Msg("Replica execute debug6")
 	// Stop the timer since we completed an execution.
 	r.stopRequestTimer()
 
+	log.Debug().Msg("Replica execute debug7")
 	// If we have more pending requests, start a new timer.
 	if len(r.pending) > 0 {
 		r.startRequestTimer(true)
 	}
 
+	log.Debug().Msg("Replica execute debug8")
 	log.Info().Msg("executed request")
 
 	r.lastExecuted = sequence

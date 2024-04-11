@@ -126,6 +126,7 @@ func (r *Replica) execute(view uint, sequence uint, digest string) error {
 		payload, err := json.Marshal(msg)
 		if err == nil {
 			r.nodeChannel <- payload
+			log.Info().Msg("nodeChannel sent")
 		}
 		return nil
 	}

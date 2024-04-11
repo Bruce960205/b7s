@@ -171,21 +171,27 @@ func (r *Replica) processMessage(from peer.ID, payload []byte) error {
 	switch m := msg.(type) {
 
 	case Request:
+		r.log.Debug().Msg("processMessage Request")
 		return r.processRequest(from, m)
 
 	case PrePrepare:
+		r.log.Debug().Msg("processMessage PrePrepare")
 		return r.processPrePrepare(from, m)
 
 	case Prepare:
+		r.log.Debug().Msg("processMessage Prepare")
 		return r.processPrepare(from, m)
 
 	case Commit:
+		r.log.Debug().Msg("processMessage Commit")
 		return r.processCommit(from, m)
 
 	case ViewChange:
+		r.log.Debug().Msg("processMessage ViewChange")
 		return r.processViewChange(from, m)
 
 	case NewView:
+		r.log.Debug().Msg("processMessage NewView")
 		return r.processNewView(from, m)
 	}
 

@@ -51,6 +51,9 @@ func (n *Node) processExecuteResponseToPrimary(ctx context.Context, from peer.ID
 	res.From = from
 	key := executionResultKey(res.RequestID, from)
 	n.pbftExecuteResponseLock.Lock()
+	if n.pbftExecuteResponse[res.RequestID] == nil {
+		n.pbftExecuteResponse[res.RequestID] = make(map[string]response.Execute)
+	}
 	n.pbftExecuteResponse[res.RequestID][key] = res
 	n.pbftExecuteResponseLock.Unlock()
 	if len(n.reportingPeers[res.RequestID]) > 0 && len(n.pbftExecuteResponse[res.RequestID]) >= len(n.reportingPeers[res.RequestID]) {

@@ -90,7 +90,6 @@ func (r *Replica) execute(view uint, sequence uint, digest string) error {
 		r.startRequestTimer(true)
 	}
 
-	log.Debug().Msg("Replica execute debug8")
 	log.Info().Msg("executed request")
 
 	r.lastExecuted = sequence
@@ -113,16 +112,19 @@ func (r *Replica) execute(view uint, sequence uint, digest string) error {
 	// Save this executions in case it's requested again.
 	r.executions[request.ID] = msg
 
+	log.Debug().Msg("Replica execute debug8")
 	// Invoke specified post processor functions.
 	for _, proc := range r.cfg.PostProcessors {
 		proc(request.ID, request.Origin, request.Execute, res)
 	}
 
+	log.Debug().Msg("Replica execute debug9")
 	err = msg.Sign(r.host.PrivateKey())
 	if err != nil {
 		return fmt.Errorf("could not sign execution request: %w", err)
 	}
 	if r.host.ID() == r.primaryReplicaID() {
+		log.Debug().Msg("Replica execute debug10")
 		payload, err := json.Marshal(msg)
 		if err == nil {
 			r.nodeChannel <- payload
@@ -130,6 +132,7 @@ func (r *Replica) execute(view uint, sequence uint, digest string) error {
 		}
 		return nil
 	}
+	log.Debug().Msg("Replica execute debug11")
 
 	err = r.send(r.primaryReplicaID(), msg, blockless.ProtocolID)
 	if err != nil {

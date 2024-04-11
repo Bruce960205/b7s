@@ -157,8 +157,11 @@ func (r *Replica) processMessage(from peer.ID, payload []byte) error {
 	// but it's probably not worth it. This way we just do it request by request.
 	// NOTE: Perhaps lock as early as possible or force serialization. For some things we want to force in-order processing of messages,
 	// e.g. `new-view` first, THEN any `preprepares` for that view.
+	r.log.Debug().Msg("processMessage debug0")
 	r.sl.Lock()
+	r.log.Debug().Msg("processMessage debug1")
 	defer r.sl.Unlock()
+	r.log.Debug().Msg("processMessage debug2")
 
 	err = r.isMessageAllowed(msg)
 	if err != nil {
